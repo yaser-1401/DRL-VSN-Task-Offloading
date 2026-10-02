@@ -1,0 +1,16 @@
+Algorithm 1: Multi-Step Social-Aware DRL Offloading and Resource Management
+Input: Tasks T_i, SINR states, trust scores S_{i,j}, capacity parameters.
+Output: Trained Q-network evaluation parameters \theta.
+1: Initialize Replay Buffer \mathcal{B}, Evaluation Net Q_\theta, Target Net Q_{\theta^-}.
+2: For episode = 1 to M do
+3:    Reset environment; obtain initial multi-vehicle state s_1.
+4:    For time step t = 1 to T do
+5:       Select action a_t via \epsilon-greedy policy based on Q_\theta(s_t, a).
+6:       Execute a_t: observe queue update Q_i(t+1), delay, energy, and link status.
+7:       Compute utility cost C_i(t) and immediate reward r_t.
+8:       Observe next multi-vehicle state s_{t+1}.
+9:       Store transition (s_t, a_t, r_t, s_{t+1}, \text{done}) in \mathcal{B}.
+10:      Sample mini-batch from \mathcal{B} and update \theta via gradient descent.
+11:      Every C steps, update \theta^- \leftarrow \theta.
+12:   End For
+13: End For
